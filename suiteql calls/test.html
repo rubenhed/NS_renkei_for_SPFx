@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <form id="search-form">
+    <label for="search-input">Search:</label>
+    <input type="text" id="search-input" name="query" placeholder="Type something...">
+  </form>
+  <div id="result"></div>
+
+  <div>
+    <datalist id="suggestions">
+    </datalist>
+    <input autoComplete="off" list="suggestions" id="searchbox"/> 
+  </div>
+
+  <script src="test.js"></script>
+</body>
+</html>
