@@ -1,0 +1,19 @@
+1. backend that returns sql req.
+call from js
+
+file upload is prob
+
+did file upload via restlet from python api
+
+
+todo:
+js file upload -> lambda server -> restlet
+
+start with doing only file upload...
+
+use lambda server for auth only?
+file upload and record creating in restlet
+
+OR no lambda?
+
+just do js to suitelet
