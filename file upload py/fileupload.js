@@ -19,7 +19,7 @@ fs.readFile('testnew.pdf', (err, data) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "User-Agent" : "Mozilla/5.0"
+      "User-Agent" : "tekito" //"Mozilla/5.0"
     },
     body: JSON.stringify(data)
   })
