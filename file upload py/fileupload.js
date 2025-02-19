@@ -1,7 +1,7 @@
 url = "https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2201&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQCAILX53RoHuenwO70qnsJC-4kuOb4G47Y3L50UpzNmU";
 
 const fs = require('fs');
-fs.readFile('testnew.pdf', (err, data) => {
+fs.readFile('test123.pdf', (err, data) => {
 
   const encoded_pdf_str = data.toString('base64');
   data = {
@@ -11,7 +11,7 @@ fs.readFile('testnew.pdf', (err, data) => {
     "contents": encoded_pdf_str,
     "isOnline": true,
     "description": "A test file.",
-    "name": "test4.pdf",
+    "name": "NEWTEST.pdf",
     "fileType": "PDF"
   }
   
