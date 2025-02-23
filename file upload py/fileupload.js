@@ -11,21 +11,20 @@ fs.readFile('test123.pdf', (err, data) => {
     "contents": encoded_pdf_str,
     "isOnline": true,
     "description": "A test file.",
-    "name": "NEWTEST.pdf",
-    "fileType": "PDF"
+    "fileType": "PDF",
+    "name": "test123.pdf"
   }
   
   fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "User-Agent" : "tekito" //"Mozilla/5.0"
+      "User-Agent" : "Mozilla/5.0" //"Mozilla/5.0"
     },
     body: JSON.stringify(data)
   })
   .then(response => response.json())
-  .then(data => console.log(data))
-
+  .then(data => console.log(data.info))
 });
 
 

@@ -79,7 +79,6 @@ define(['N/record', 'N/log', 'N/https'], function (record, log, https) {
       });
 
     } catch (e) {
-      log.error('Error creating estimate', e.toString());
       context.response.write('Error creating estimate: ' + e.toString());
     }
   }
