@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form method="post" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
+    <div>
+      <label for="file-upload">Choose a pdf to upload</label>
+      <input type="file" id="file-upload" name="file-upload" accept=".pdf"/>
+    </div>
+    <div>
+      <label for="customer">Select customer</label>
+      <input type="text" name="customer" id="customer"/>
+      <ul id="customer-list"></ul>
+    </div>
+    <div>
+      <label for="department">Select department</label>
+      <input type="text" name="department" id="department"/>
+      <ul id="department-list"></ul>
+    </div>
+    <div>
+      <label for="location">Select location</label>
+      <input type="text" name="location" id="location"/>
+      <ul id="location-list"></ul>
+    </div>
+    <div>
+      <label for="bumon">Select bumon</label>
+      <input type="text" name="bumon" id="bumon"/>
+      <ul id="bumon-list"></ul>
+    </div>
+    <div>
+      <label for="item">Select item(ignore rn)</label>
+      <input type="text" name="item" id="item" data-id="3108" data-quantity="1" data-rate="1000.0"/>
+      <ul id="item-list"></ul>
+    </div>
+    <button onclick="submitForm(event)">Submit</button>
+  </form>
+
+  <script src="fileUpload.js"></script>
+  <script src="callSuiteql.js"></script>
+  <script src="submit.js"></script>
+</body>
+</html>

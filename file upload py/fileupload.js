@@ -4,6 +4,9 @@ const fs = require('fs');
 fs.readFile('test123.pdf', (err, data) => {
 
   const encoded_pdf_str = data.toString('base64');
+  console.log(encoded_pdf_str);
+  
+  return;
   data = {
     "encoding": "UTF-8",
     "function": "fileCreate",

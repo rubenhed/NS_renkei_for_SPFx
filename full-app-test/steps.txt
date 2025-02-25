@@ -1,0 +1,4 @@
+1. user form to fill in for mitsumori create
+-suiteql get all the neccessary fields
+-file upload(pdf only for now)
+-submit button that sends the data to suiteql to create the 1. file, 2. mitsumori, 3. connect the file to the mitsumori

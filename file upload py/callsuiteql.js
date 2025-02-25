@@ -3,10 +3,9 @@ url = "https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?s
 data = {
   sql: `
     SELECT * 
-    FROM entitygroup
-    WHERE entitygroup.groupname = ?
+    FROM classification
   `,
-  params: ["meqss"]
+  params: []
 }
 
 fetch(url, {
