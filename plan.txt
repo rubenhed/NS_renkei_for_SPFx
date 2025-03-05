@@ -17,3 +17,13 @@ file upload and record creating in restlet
 OR no lambda?
 
 just do js to suitelet
+
+
+20250305
+
+finish it with no filtering for gmkk/gikk (maybe i can get subsidary from the customer itself)
+fields:
+class, department from class
+location probably needed
+customer
+item and its quant and rate at least. maybe check for default rate 

@@ -1,3 +1,5 @@
+
+//https://cors-anywhere.herokuapp.com/corsdemo to enable heroku cors link
 const createUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2202&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQ2WikcsMm1rnFfVmA42QpaSJaZJetnpqqeOzdjV1Qljs";
 
 
