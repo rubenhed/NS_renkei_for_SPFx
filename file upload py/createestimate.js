@@ -31,13 +31,13 @@ define(['N/record', 'N/log', 'N/https'], function (record, log, https) {
       });
 
       estimateRecord.setValue({
-        fieldId: 'location',
-        value: data.location // Customer ID passed from the form
+        fieldId: 'class',
+        value: data.class // Customer ID passed from the form
       });
 
       estimateRecord.setValue({
-        fieldId: 'class',
-        value: data.class // Customer ID passed from the form
+        fieldId: 'location',
+        value: data.location // Customer ID passed from the form
       });
 
       estimateRecord.selectNewLine({ sublistId: 'item' });

@@ -11,14 +11,14 @@ data = {
 }
 
 fetch(url, {
-  method: "POST",
+  method: "GET",
   headers: {
     "Content-Type": "application/json",
     "User-Agent" : "Mozilla/5.0"
   },
-  body: JSON.stringify(data)
+  //body: JSON.stringify(data)
 })
 .then(response => {
-  return response.text();
+  return response.json();
 })
 .then(data => console.log(data))

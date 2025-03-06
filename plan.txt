@@ -21,7 +21,7 @@ just do js to suitelet
 
 20250305
 
-finish it with no filtering for gmkk/gikk (maybe i can get subsidary from the customer itself)
+finish it with no filtering for gmkk/gikk (maybe i can get subsidary from the customer itself) CAN!!
 fields:
 class, department from class
 location probably needed
