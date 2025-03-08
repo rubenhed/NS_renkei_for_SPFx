@@ -27,3 +27,14 @@ class, department from class
 location probably needed
 customer
 item and its quant and rate at least. maybe check for default rate 
+
+20250308
+steps:
+(get customer and get class can be a seperate suitelet which is called by the main suitelet)
+
+suiteql call customers, select customer, get that customers info including subsidary.
+suiteql classes, select class, get department from that class.
+suiteql locations, select location.
+suiteql items, select item, select its quant and rate? (could get rate from the item itself...)
+optionally add a file(pdf) and store its binary data.
+submit and send data to create estimate suitelet. if file data exists create the file and bind it to the estimate. 
