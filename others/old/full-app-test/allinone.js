@@ -6,9 +6,11 @@ const submitData = {
   estimate: {
     customerId: null,
     departmentId: null,
+    departmentName: null,
     locationId: null,
     classificationId: null,
-    subsidaryId: null,
+    subsidiaryId: null,
+    subsidiaryName: null,
     items: []
   },
   file: {
@@ -46,7 +48,8 @@ const searchFields = document.querySelectorAll(".search-field")
 
 const getRecordUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2209&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQIi0jfOnlwySoM-3-NKYjDHPPqlkBBTjswP-P9ys2RBI"
 
-const getSubsidary = (customerId) => {
+const subsidiary = document.querySelector("#subsidiary");
+const getSubsidiary = (customerId) => {
   fetch(getRecordUrl, {
     method: "POST",
     headers: {
@@ -61,11 +64,16 @@ const getSubsidary = (customerId) => {
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    submitData.estimate.subsidaryId = data.result;
+    submitData.estimate.subsidiaryId = data.subsidiaryId;
+    submitData.estimate.subsidiaryName = data.subsidiaryName;
     console.log(submitData);
+
+    removeDisabled();
+    subsidiary.value = submitData.estimate.subsidiaryName;
   })
 }
 
+const department = document.querySelector("#department");
 const getDepartment = (classificationId) => {
   fetch(getRecordUrl, {
     method: "POST",
@@ -81,8 +89,11 @@ const getDepartment = (classificationId) => {
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    submitData.estimate.departmentId = data.result;
+    submitData.estimate.departmentId = data.departmentId;
+    submitData.estimate.departmentName = data.departmentName;
     console.log(submitData);
+
+    department.value = submitData.estimate.departmentName;
   })
 }
 
@@ -98,13 +109,15 @@ const customer = (data, resultList, target) => {
       resultList.innerHTML = "";
       console.log(submitData);
 
-      getSubsidary(submitData.estimate.customerId);
+      getSubsidiary(submitData.estimate.customerId);
     });
   })
 }
 
 const classification = (data, resultList, target) => {  
   data.forEach(result => {
+    if (result.subsidiary != submitData.estimate.subsidiaryId) return;
+    
     const li = document.createElement('li');
     li.textContent = result.name;
     li.style.cursor = 'pointer';
@@ -122,6 +135,8 @@ const classification = (data, resultList, target) => {
 
 const location_ = (data, resultList, target) => {
   data.forEach(result => {
+    if (result.subsidiary != submitData.estimate.subsidiaryId) return;
+
     const li = document.createElement('li');
     li.textContent = result.name;
     li.style.cursor = 'pointer';
@@ -138,13 +153,13 @@ const location_ = (data, resultList, target) => {
 const suiteqlUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2210&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQVhNErAxA2RTx8ktjnsORgOoqu5T5GDRS7u-hhQFJ130"
 const sqlSearch = (event) => {
   if (event.key !== "Enter") return;
-  
+
   const type = event.target.id;
   const target = event.target;
   console.log("input:", target.value);
   const params = [`%${target.value}%`];
   //const params = [`7`];
-  const resultList = event.target.nextElementSibling;
+  const resultList = event.target.parentElement.querySelector("ul");
   resultList.innerHTML = "Loading...";
 
   fetch(suiteqlUrl, {
@@ -179,3 +194,10 @@ const sqlSearch = (event) => {
 searchFields.forEach(searchField => {
   searchField.addEventListener("keydown", sqlSearch);
 })
+
+const subfields = document.querySelectorAll(".subfield");
+const removeDisabled = () => {
+  subfields.forEach(subfield => {
+    subfield.removeAttribute("disabled");
+  })
+}

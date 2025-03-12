@@ -9,16 +9,23 @@ define(['N/record'],
   (record) => {
     const onRequest = (scriptContext) => {
       const data = JSON.parse(scriptContext.request.body);
-      let result;
 
       switch ( data.type ) {
         case 'customer':
-          sql = "SELECT * FROM customer WHERE altname LIKE ?";
           const customer = record.load({
             type: record.Type.CUSTOMER,
             id: data.id
           });
-          result = customer.getValue('subsidiary');
+          const subsidiaryId = customer.getValue('subsidiary');
+          
+          const subsidiary = record.load({
+            type: record.Type.SUBSIDIARY,
+            id: subsidiaryId
+          });
+
+          const subsidiaryName = subsidiary.getValue('name');
+
+          scriptContext.response.write(JSON.stringify({ subsidiaryId, subsidiaryName }));
           break;
           
         case 'classification':
@@ -26,7 +33,17 @@ define(['N/record'],
             type: record.Type.CLASSIFICATION,
             id: data.id
           });
-          result = classification.getValue('custrecord_ga_agy_division');
+
+          const departmentId = classification.getValue('custrecord_ga_agy_division');
+
+          const department = record.load({
+            type: record.Type.DEPARTMENT,
+            id: departmentId
+          });
+
+          const departmentName = department.getValue('name');
+
+          scriptContext.response.write(JSON.stringify({ departmentId, departmentName }));
           break;
           
         default:
@@ -34,7 +51,7 @@ define(['N/record'],
           return;
       }
 
-      scriptContext.response.write(JSON.stringify({ result }));
+      
     }
 
     return { onRequest }
