@@ -38,3 +38,7 @@ suiteql locations, select location.
 suiteql items, select item, select its quant and rate? (could get rate from the item itself...)
 optionally add a file(pdf) and store its binary data.
 submit and send data to create estimate suitelet. if file data exists create the file and bind it to the estimate. 
+
+
+20250312
+one suitelet only.
