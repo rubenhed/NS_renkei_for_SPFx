@@ -2,15 +2,29 @@
 //https://cors-anywhere.herokuapp.com/corsdemo to enable heroku cors link
 //newurl = https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2207&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQDyczeSzE3X8pdZFFc6zNC6W8GSq3Pq2pyTP87SioWes
 
-const suiteqlUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2203&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQPfXiFWOQ1f0L74Q4IJgs7S_r30-k_1px7C7Gx7jaYZ8"
+const suiteqlUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2210&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQVhNErAxA2RTx8ktjnsORgOoqu5T5GDRS7u-hhQFJ130"
 const searchFields = document.querySelectorAll(".search-field")
 
+
 const submitData = {
-  customer: null,
-  department: null,
-  location: null,
-  classification: null,
+  estimate: {
+    customerId: null,
+    departmentId: null,
+    locationId: null,
+    classificationId: null,
+    items: []
+  },
+  file: {
+    contents: null,
+    encoding: "UTF-8",
+    folderID: 20757,
+    isOnline: true,
+    description: "test file for now",
+    fileType: "PDF",
+    name: "testfile.pdf"
+  }
 }
+
 
 const subsidiary = 7; //6 is GIKK, 7 is GMKK
 
@@ -52,7 +66,7 @@ searchFields.forEach(searchField => {
         resultList.appendChild(li);
         li.addEventListener('click', () => {
           event.target.value = result[field];
-          submitData[type] = result.id;
+          submitData.estimate[type] = result.id;
           resultList.innerHTML = "";
           console.log(submitData);
         });
