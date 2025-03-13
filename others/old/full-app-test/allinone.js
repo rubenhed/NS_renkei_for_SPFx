@@ -11,17 +11,28 @@ const submitData = {
     classificationId: null,
     subsidiaryId: null,
     subsidiaryName: null,
-    items: []
+    items: [{
+      itemId: 13061,
+      quantity: 1,
+      rate: 1000
+    }]
   },
   file: {
     contents: null,
     encoding: "UTF-8",
-    folderID: 20757,
+    folderID: 23664, //SuiteScripts > SPFx_renkei > uploaded_files
     isOnline: true,
-    description: "test file for now",
+    description: "",
     fileType: "PDF",
-    name: "testfile.pdf"
+    name: ""
   }
+}
+
+const nextItem = {
+  displayname: null,
+  itemId: null,
+  quantity: null,
+  rate: null
 }
 
 //FILE UPLOAD
@@ -37,6 +48,11 @@ const updateFileDisplay = (event) => {
       //preview.textContent = `Selected file: ${base64data}`;
       //console.log(base64data);
       submitData.file.contents = base64data;
+      submitData.file.name = file.name;
+      console.log(file);
+      console.log(submitData.file);
+      
+      
     };
   }
 }
@@ -44,8 +60,6 @@ const updateFileDisplay = (event) => {
 fileInput.addEventListener("change", updateFileDisplay);
 
 //SQL GETS
-const searchFields = document.querySelectorAll(".search-field")
-
 const getRecordUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2209&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQIi0jfOnlwySoM-3-NKYjDHPPqlkBBTjswP-P9ys2RBI"
 
 const subsidiary = document.querySelector("#subsidiary");
@@ -150,6 +164,26 @@ const location_ = (data, resultList, target) => {
   })
 }
 
+const item = (data, resultList, target) => {
+  data.forEach(result => {
+    if (result.subsidiary != submitData.estimate.subsidiaryId) return;
+
+    const li = document.createElement('li');
+    li.textContent = result.displayname;
+    li.style.cursor = 'pointer';
+    resultList.appendChild(li);
+    li.addEventListener('click', () => {
+      target.value = li.textContent;
+      nextItem.itemId = result.id;
+      nextItem.displayname = result.displayname;
+      resultList.innerHTML = "";
+      console.log(submitData);
+      console.log(nextItem);
+    });
+  })
+}
+
+
 const suiteqlUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2210&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQVhNErAxA2RTx8ktjnsORgOoqu5T5GDRS7u-hhQFJ130"
 const sqlSearch = (event) => {
   if (event.key !== "Enter") return;
@@ -159,7 +193,7 @@ const sqlSearch = (event) => {
   console.log("input:", target.value);
   const params = [`%${target.value}%`];
   //const params = [`7`];
-  const resultList = event.target.parentElement.querySelector("ul");
+  const resultList = event.target.parentElement.parentElement.nextElementSibling;
   resultList.innerHTML = "Loading...";
 
   fetch(suiteqlUrl, {
@@ -187,17 +221,69 @@ const sqlSearch = (event) => {
       case "location":
         location_(data, resultList, target);
         break;
+      case "item":
+        item(data, resultList, target);
+        break;
     }
   })
 }
 
+const searchFields = document.querySelectorAll(".search-field")
 searchFields.forEach(searchField => {
   searchField.addEventListener("keydown", sqlSearch);
 })
+
+const currentItems = document.querySelector("#current-items");
+
+const addItem = (event) => {
+  event.preventDefault();
+  submitData.estimate.items.push(nextItem);
+  console.log(submitData);
+
+  const li = document.createElement('li');
+  li.textContent = `${nextItem.displayname} - ${nextItem.quantity}個 - ${nextItem.rate}¥`;
+  currentItems.appendChild(li);
+}
+
+const itemOptions = document.querySelectorAll(".item-option");
+itemOptions.forEach(itemOption => {
+  itemOption.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+
+    switch ( event.target.id ) {
+      case "quantity":
+        nextItem.quantity = event.target.value;
+        break;
+      case "rate":
+        nextItem.rate = event.target.value;
+        break;
+    }
+
+    console.log(nextItem);
+  })
+});
 
 const subfields = document.querySelectorAll(".subfield");
 const removeDisabled = () => {
   subfields.forEach(subfield => {
     subfield.removeAttribute("disabled");
   })
+}
+
+const createUrl = "https://cors-anywhere.herokuapp.com/https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2208&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQxyimjYBRdu6XxAFpMBY3EaxiZu7EsRPgy3PrV1IhXsU"
+
+const submitForm = (event) => {
+  event.preventDefault();
+  console.log(submitData);
+
+  fetch(createUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "User-Agent" : "Mozilla/5.0"
+    },
+    body: JSON.stringify(submitData)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
 }

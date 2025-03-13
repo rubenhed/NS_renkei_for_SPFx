@@ -43,19 +43,19 @@ define(['N/record', 'N/file'],
         estimateRecord.setCurrentSublistValue({
           sublistId: 'item',
           fieldId: 'item',
-          value: data.itemId // Item ID passed from the form
+          value: item.itemId // Item ID passed from the form
         });
 
         estimateRecord.setCurrentSublistValue({
           sublistId: 'item',
           fieldId: 'quantity',
-          value: data.quantity // Quantity passed from the form
+          value: item.quantity // Quantity passed from the form
         });
 
         estimateRecord.setCurrentSublistValue({
           sublistId: 'item',
           fieldId: 'rate',
-          value: data.rate // Rate passed from the form
+          value: item.rate // Rate passed from the form
         });
 
         estimateRecord.commitLine({ sublistId: 'item' });
@@ -64,7 +64,10 @@ define(['N/record', 'N/file'],
       return estimateRecord.save();
     }
 
-    const fileUpload = (data) => {
+    const fileUpload = (data, estimateId) => {
+      data.name = `${estimateId}_${data.name}`;
+      data.description = `File attached to Estimate(見積) with ID: ${estimateId}`;
+
       const fileObj = file.create({
         name: data.name,
         fileType: data.fileType,
@@ -97,7 +100,7 @@ define(['N/record', 'N/file'],
       const estimateId = createEstimate(data.estimate);
 
       if (data.file.contents) {
-        const fileId = fileUpload(data.file);
+        const fileId = fileUpload(data.file, estimateId);
         attachFile(fileId, estimateId);
       }
 

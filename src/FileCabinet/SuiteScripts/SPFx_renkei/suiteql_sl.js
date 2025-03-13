@@ -28,7 +28,7 @@ define(['N/query'], function(query)  {
           break;
         
         case 'item':
-          sql = "SELECT id, displayname FROM item WHERE displayname LIKE ?";
+          sql = "SELECT id, displayname, subsidiary FROM item WHERE displayname LIKE ?";
           break;	
           
         default:

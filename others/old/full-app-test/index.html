@@ -13,31 +13,57 @@
         <label for="file-upload">Choose a pdf to upload</label>
         <input type="file" id="file-upload" name="file-upload" accept=".pdf"/>
       </div>
-      <div>
-        <label for="customer">Customer 会社名</label><br>
-        <input type="text" name="customer" id="customer" class="search-field"/>
-        <input type="text" name="subsidiary" id="subsidiary" disabled/>
-        
-        <ul id="customer-list"></ul>
+      <div class="d-flex">
+        <div>
+          <label for="customer">Customer 会社名</label><br>
+          <input type="text" name="customer" id="customer" class="search-field"/>
+        </div>
+        <div>
+          <label for="subsidiary">Subsidiary (入力不可)</label><br>
+          <input type="text" name="subsidiary" id="subsidiary" disabled/>
+        </div>
       </div>
-      <div>
-        <label for="classification">Bumon 部門 (class)</label><br>
-        <input type="text" name="classification" id="classification" class="search-field subfield" disabled/>
-        <input type="text" name="department" id="department" disabled/>
+      <ul id="customer-list"></ul>
 
-        <ul id="classification-list"></ul>
+      <div class="d-flex">
+        <div>
+          <label for="classification">Bumon 部門 (class)</label><br>
+          <input type="text" name="classification" id="classification" class="search-field subfield" disabled/>
+        </div>
+        <div>
+          <label for="classification">Department 部署 (入力不可)</label><br>
+          <input type="text" name="department" id="department" disabled/>
+        </div>
       </div>
+      <ul id="classification-list"></ul>
       <div>
-        <label for="location">Location 場所・ウエアハウス</label><br>
-        <input type="text" name="location" id="location" class="search-field subfield" disabled/>
-        <ul id="location-list"></ul>
+        <div>
+          <label for="location">Location 場所・ウエアハウス</label><br>
+          <input type="text" name="location" id="location" class="search-field subfield" disabled/>
+        </div>
       </div>
-      <div>
-        <label for="item">Select item(ignore rn)</label><br>
-        <input type="text" name="item" id="item" data-id="3108" data-quantity="1" data-rate="1000.0" class="search-field"/>
-        <ul id="item-list"></ul>
+      <ul id="location-list"></ul>
+
+      <div class="d-flex">
+        <div>
+          <label for="item">Item (商品)</label><br>
+          <input type="text" name="item" id="item" class="search-field subfield" disabled/>
+        </div>
+        <div>
+          <label for="quantity">Quantity</label><br>
+          <input type="number" name="quantity" id="quantity" step="1" class="item-option"/>
+        </div>
+        <div>
+          <label for="rate">Rate</label><br>
+          <input type="number" name="rate" id="rate" class="item-option"/>
+        </div>
+        <button class="btn btn-primary" onclick="addItem(event)">Add item</button>
       </div>
-      <button onclick="submitForm(event)">Submit</button>
+      <ul id="item-list"></ul>
+      <h3>Added items:</h3>
+      <ul id="current-items"></ul>
+
+      <button class="btn btn-primary" onclick="submitForm(event)">Create estimate</button>
     </form>
   </div>
 
