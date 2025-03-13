@@ -43,19 +43,19 @@ define(['N/record', 'N/file'],
         estimateRecord.setCurrentSublistValue({
           sublistId: 'item',
           fieldId: 'item',
-          value: item.itemId // Item ID passed from the form
+          value: item.itemId
         });
 
         estimateRecord.setCurrentSublistValue({
           sublistId: 'item',
           fieldId: 'quantity',
-          value: item.quantity // Quantity passed from the form
+          value: item.quantity
         });
 
         estimateRecord.setCurrentSublistValue({
           sublistId: 'item',
           fieldId: 'rate',
-          value: item.rate // Rate passed from the form
+          value: item.rate
         });
 
         estimateRecord.commitLine({ sublistId: 'item' });

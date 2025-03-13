@@ -12,7 +12,7 @@ define(['N/query'], function(query)  {
 
       switch ( data.type ) {
         case 'customer':
-          sql = "SELECT * FROM customer WHERE altname LIKE ?";
+          sql = "SELECT * FROM customer WHERE altname LIKE ?"
           break;
           
         case 'department':
@@ -29,7 +29,7 @@ define(['N/query'], function(query)  {
         
         case 'item':
           sql = "SELECT id, displayname, subsidiary FROM item WHERE displayname LIKE ?";
-          break;	
+          break;
           
         default:
           scriptContext.response.write(JSON.stringify({ error: 'Unsupported type' }));
