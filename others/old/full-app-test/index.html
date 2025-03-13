@@ -9,55 +9,57 @@
 <body>
   <div class="container mt-5">
     <form method="post" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
-      <div>
-        <label for="file-upload">Choose a pdf to upload</label>
-        <input type="file" id="file-upload" name="file-upload" accept=".pdf"/>
+      <div class="mb-3">
+        <label for="file-upload" class="form-label">Choose a pdf to upload</label>
+        <input type="file" id="file-upload" name="file-upload" accept=".pdf" class="form-control"/>
       </div>
       <div class="d-flex">
-        <div>
-          <label for="customer">Customer 会社名</label><br>
-          <input type="text" name="customer" id="customer" class="search-field"/>
+        <div class="me-3">
+          <label class="form-label" for="customer">Customer 会社名</label><br>
+          <input class="form-control search-field" type="text" name="customer" id="customer"/>
         </div>
         <div>
-          <label for="subsidiary">Subsidiary (入力不可)</label><br>
-          <input type="text" name="subsidiary" id="subsidiary" disabled/>
+          <label class="form-label" for="subsidiary">Subsidiary (入力不可)</label><br>
+          <input class="form-control" type="text" name="subsidiary" id="subsidiary" disabled/>
         </div>
       </div>
       <ul id="customer-list"></ul>
 
       <div class="d-flex">
-        <div>
-          <label for="classification">Bumon 部門 (class)</label><br>
-          <input type="text" name="classification" id="classification" class="search-field subfield" disabled/>
+        <div class="me-3">
+          <label class="form-label" for="classification">Bumon 部門 (class)</label><br>
+          <input class="form-control search-field subfield" type="text" name="classification" id="classification" disabled/>
         </div>
         <div>
-          <label for="classification">Department 部署 (入力不可)</label><br>
-          <input type="text" name="department" id="department" disabled/>
+          <label class="form-label" for="classification">Department 部署 (入力不可)</label><br>
+          <input class="form-control" type="text" name="department" id="department" disabled/>
         </div>
       </div>
       <ul id="classification-list"></ul>
       <div>
         <div>
-          <label for="location">Location 場所・ウエアハウス</label><br>
-          <input type="text" name="location" id="location" class="search-field subfield" disabled/>
+          <label class="form-label" for="location">Location 場所・ウエアハウス</label><br>
+          <input class="form-control search-field subfield" type="text" name="location" id="location" disabled/>
         </div>
       </div>
       <ul id="location-list"></ul>
 
       <div class="d-flex">
-        <div>
-          <label for="item">Item (商品)</label><br>
-          <input type="text" name="item" id="item" class="search-field subfield" disabled/>
+        <div class="me-3">
+          <label class="form-label" for="item">Item (商品)</label><br>
+          <input class="form-control search-field subfield" type="text" name="item" id="item" disabled/>
         </div>
-        <div>
-          <label for="quantity">Quantity</label><br>
-          <input type="number" name="quantity" id="quantity" step="1" class="item-option"/>
+        <div class="me-3">
+          <label class="form-label" for="quantity">Quantity</label><br>
+          <input class="form-control item-option" type="number" name="quantity" id="quantity" step="1"/>
         </div>
-        <div>
-          <label for="rate">Rate</label><br>
-          <input type="number" name="rate" id="rate" class="item-option"/>
+        <div class="me-3">
+          <label class="form-label" for="rate">Rate</label><br>
+          <input class="form-control item-option" type="number" name="rate" id="rate"/>
         </div>
-        <button class="btn btn-primary" onclick="addItem(event)">Add item</button>
+        <div class="d-flex align-items-end">
+          <button class="btn btn-primary" onclick="addItem(event)">Add item</button>
+        </div>
       </div>
       <ul id="item-list"></ul>
       <h3>Added items:</h3>

@@ -235,8 +235,14 @@ searchFields.forEach(searchField => {
 
 const currentItems = document.querySelector("#current-items");
 
+const quantity = document.querySelector("#quantity");
+const rate = document.querySelector("#rate");
+
 const addItem = (event) => {
   event.preventDefault();
+  nextItem.quantity = quantity.value;
+  nextItem.rate = rate.value;
+
   submitData.estimate.items.push(nextItem);
   console.log(submitData);
 
@@ -244,24 +250,6 @@ const addItem = (event) => {
   li.textContent = `${nextItem.displayname} - ${nextItem.quantity}個 - ${nextItem.rate}¥`;
   currentItems.appendChild(li);
 }
-
-const itemOptions = document.querySelectorAll(".item-option");
-itemOptions.forEach(itemOption => {
-  itemOption.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter") return;
-
-    switch ( event.target.id ) {
-      case "quantity":
-        nextItem.quantity = event.target.value;
-        break;
-      case "rate":
-        nextItem.rate = event.target.value;
-        break;
-    }
-
-    console.log(nextItem);
-  })
-});
 
 const subfields = document.querySelectorAll(".subfield");
 const removeDisabled = () => {
