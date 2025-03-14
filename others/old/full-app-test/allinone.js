@@ -11,11 +11,7 @@ const submitData = {
     classificationId: null,
     subsidiaryId: null,
     subsidiaryName: null,
-    items: [{
-      itemId: 13061,
-      quantity: 1,
-      rate: 1000
-    }]
+    items: []
   },
   file: {
     contents: null,
@@ -243,11 +239,11 @@ const addItem = (event) => {
   nextItem.quantity = quantity.value;
   nextItem.rate = rate.value;
 
-  submitData.estimate.items.push(nextItem);
+  submitData.estimate.items.push(structuredClone(nextItem));
   console.log(submitData);
 
   const li = document.createElement('li');
-  li.textContent = `${nextItem.displayname} - ${nextItem.quantity}個 - ${nextItem.rate}¥`;
+  li.textContent = `${nextItem.displayname} - ${nextItem.quantity}個 - ¥${nextItem.rate}`;
   currentItems.appendChild(li);
 }
 
