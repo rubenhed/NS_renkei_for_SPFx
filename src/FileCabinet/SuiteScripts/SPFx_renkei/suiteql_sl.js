@@ -7,6 +7,20 @@
 define(['N/query'], function(query)  {
   
   function onRequest(scriptContext) {
+
+      scriptContext.response.addHeader({
+        name: 'Access-Control-Allow-Origin',
+        value: 'https://gadelius.sharepoint.com'
+      });
+      scriptContext.response.addHeader({
+          name: 'Access-Control-Allow-Headers',
+          value: 'Content-Type'
+      });
+      if (scriptContext.request.method === 'OPTIONS') {
+          scriptContext.response.write("ok");
+          return;
+      }
+
       const data = JSON.parse(scriptContext.request.body);
       var sql;
 
