@@ -14,8 +14,8 @@ export interface INsSuiteletConnectorWebPartProps {
   description: string;
 }
 
-import { SPComponentLoader } from '@microsoft/sp-loader';
-SPComponentLoader.loadCss("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css")
+//import { SPComponentLoader } from '@microsoft/sp-loader';
+//SPComponentLoader.loadCss("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css")
 
 export default class NsSuiteletConnectorWebPart extends BaseClientSideWebPart<INsSuiteletConnectorWebPartProps> {
 

@@ -111,11 +111,17 @@ const getDepartment = (classificationId) => {
   })
 }
 
+const createListItem = () => {
+  const li = document.createElement('li');
+  li.style.cursor = 'pointer';
+  li.classList.add("list-group-item", "list-group-item-action");
+  return li;
+}
+
 const customer = (data, resultList, target) => {
   data.forEach(result => {
-    const li = document.createElement('li');
+    const li = createListItem();
     li.textContent = result.altname;
-    li.style.cursor = 'pointer';
     resultList.appendChild(li);
     li.addEventListener('click', () => {
       target.value = li.textContent;
@@ -132,9 +138,8 @@ const classification = (data, resultList, target) => {
   data.forEach(result => {
     if (result.subsidiary != submitData.estimate.subsidiaryId) return;
     
-    const li = document.createElement('li');
+    const li = createListItem();
     li.textContent = result.name;
-    li.style.cursor = 'pointer';
     resultList.appendChild(li);
     li.addEventListener('click', () => {
       target.value = li.textContent;
@@ -151,9 +156,8 @@ const location_ = (data, resultList, target) => {
   data.forEach(result => {
     if (result.subsidiary != submitData.estimate.subsidiaryId) return;
 
-    const li = document.createElement('li');
+    const li = createListItem();
     li.textContent = result.name;
-    li.style.cursor = 'pointer';
     resultList.appendChild(li);
     li.addEventListener('click', () => {
       target.value = li.textContent;
@@ -168,9 +172,8 @@ const item = (data, resultList, target) => {
   data.forEach(result => {
     if (result.subsidiary != submitData.estimate.subsidiaryId) return;
 
-    const li = document.createElement('li');
+    const li = createListItem();
     li.textContent = result.displayname;
-    li.style.cursor = 'pointer';
     resultList.appendChild(li);
     li.addEventListener('click', () => {
       target.value = li.textContent;
@@ -248,6 +251,7 @@ const addItem = (event) => {
   console.log(submitData);
 
   const li = document.createElement('li');
+  li.classList.add("list-group-item");
   li.textContent = `${nextItem.displayname} - ${nextItem.quantity}個 - ¥${nextItem.rate}`;
   currentItems.appendChild(li);
 }
@@ -274,6 +278,7 @@ const submitForm = (event) => {
   event.preventDefault();
   event.target.disabled = true;
   console.log(submitData);
+  let id;
 
   fetch(createUrl, {
     method: "POST",
@@ -284,9 +289,16 @@ const submitForm = (event) => {
     body: JSON.stringify(submitData)
   })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => {
+    console.log(data)
+    id = data.estimateId;
+  })
   .catch(error => console.error(error))
-  .finally(() => event.target.disabled = false);
+  .finally(() => {
+    event.target.disabled = false
+    event.target.nextElementSibling.href = `https://6317455-sb1.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${id}`;
+    event.target.nextElementSibling.innerText = `https://6317455-sb1.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${id}`;
+  });
 }
 
 const submitButton = document.querySelector("#submit-button");
