@@ -1,7 +1,7 @@
 
 //https://cors-anywhere.herokuapp.com/corsdemo to enable heroku cors link
 
-console.log("hello there");
+console.log("Suitescript connector connected");
 
 //CONST post data
 const submitData = {
@@ -278,7 +278,6 @@ const submitForm = (event) => {
   event.preventDefault();
   event.target.disabled = true;
   console.log(submitData);
-  let id;
 
   fetch(createUrl, {
     method: "POST",
@@ -291,13 +290,19 @@ const submitForm = (event) => {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    id = data.estimateId;
+    console.log(data.estimateId);
+
+    const link = document.createElement('a');
+    link.href = `https://6317455-sb1.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${data.estimateId}`;
+    link.innerText = `https://6317455-sb1.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${data.estimateId}`;
+    link.target = "_blank";
+    const div = document.createElement('div');
+    div.appendChild(link);
+    event.target.insertAdjacentElement('afterend', div);
   })
   .catch(error => console.error(error))
   .finally(() => {
     event.target.disabled = false
-    event.target.nextElementSibling.href = `https://6317455-sb1.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${id}`;
-    event.target.nextElementSibling.innerText = `https://6317455-sb1.app.netsuite.com/app/accounting/transactions/estimate.nl?id=${id}`;
   });
 }
 
