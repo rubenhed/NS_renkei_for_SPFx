@@ -24,9 +24,7 @@ export default class NsSuiteletConnectorWebPart extends BaseClientSideWebPart<IN
 
   public render(): void {
 
-    const html = require('./index.html').default;
-    this.domElement.innerHTML = html;
-
+    this.domElement.innerHTML = require('./index.html').default;
     require('./allinone.js');
   }
 
