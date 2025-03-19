@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "ns-suitelet-connector-client-side-solution",
+    "id": "5745033d-d8c7-489a-b54b-62928190772f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "NS-Suitelet-connector description"
+      },
+      "longDescription": {
+        "default": "NS-Suitelet-connector description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "ns-suitelet-connector Feature",
+        "description": "The feature that activates elements of the ns-suitelet-connector solution.",
+        "id": "e1ed83f8-eaad-49d7-8460-be58a524a482",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/ns-suitelet-connector.sppkg"
+  }
+}

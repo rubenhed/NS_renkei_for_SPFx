@@ -10,7 +10,7 @@ define(['N/query'], function(query)  {
 
       scriptContext.response.addHeader({
         name: 'Access-Control-Allow-Origin',
-        value: 'https://gadelius.sharepoint.com'
+        value: '*' //https://gadelius.sharepoint.com
       });
       scriptContext.response.addHeader({
           name: 'Access-Control-Allow-Headers',

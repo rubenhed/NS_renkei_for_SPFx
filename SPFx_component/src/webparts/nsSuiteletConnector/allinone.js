@@ -1,6 +1,8 @@
 
 //https://cors-anywhere.herokuapp.com/corsdemo to enable heroku cors link
 
+console.log("hello there");
+
 //CONST post data
 const submitData = {
   estimate: {
@@ -237,6 +239,7 @@ const quantity = document.querySelector("#quantity");
 const rate = document.querySelector("#rate");
 
 const addItem = (event) => {
+  
   event.preventDefault();
   nextItem.quantity = quantity.value;
   nextItem.rate = rate.value;
@@ -248,6 +251,8 @@ const addItem = (event) => {
   li.textContent = `${nextItem.displayname} - ${nextItem.quantity}個 - ¥${nextItem.rate}`;
   currentItems.appendChild(li);
 }
+const addButton = document.querySelector("#add-button");
+addButton.addEventListener("click", addItem);
 
 const subfields = document.querySelectorAll(".subfield");
 const addDisabled = () => {
@@ -264,11 +269,10 @@ const removeDisabled = () => {
 }
 
 const createUrl = "https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2208&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQxyimjYBRdu6XxAFpMBY3EaxiZu7EsRPgy3PrV1IhXsU"
-const submitButton = document.querySelector("#submit-button");
 
 const submitForm = (event) => {
   event.preventDefault();
-  submitButton.disabled = true;
+  event.target.disabled = true;
   console.log(submitData);
 
   fetch(createUrl, {
@@ -282,5 +286,8 @@ const submitForm = (event) => {
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error(error))
-  .finally(() => submitButton.disabled = false);
+  .finally(() => event.target.disabled = false);
 }
+
+const submitButton = document.querySelector("#submit-button");
+submitButton.addEventListener("click", submitForm);

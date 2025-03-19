@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.5",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.24.0"
+    },
+    "version": "1.20.0",
+    "libraryName": "ns-suitelet-connector",
+    "libraryId": "5745033d-d8c7-489a-b54b-62928190772f",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "NS-Suitelet-connector",
+    "solutionShortDescription": "NS-Suitelet-connector description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

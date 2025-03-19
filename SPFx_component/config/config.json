@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "ns-suitelet-connector-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/nsSuiteletConnector/NsSuiteletConnectorWebPart.js",
+          "manifest": "./src/webparts/nsSuiteletConnector/NsSuiteletConnectorWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "NsSuiteletConnectorWebPartStrings": "lib/webparts/nsSuiteletConnector/loc/{locale}.js"
+  }
+}
