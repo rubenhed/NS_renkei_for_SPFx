@@ -121,15 +121,20 @@ const createListItem = () => {
 const customer = (data, resultList, target) => {
   data.forEach(result => {
     const li = createListItem();
-    li.textContent = result.altname;
+    li.textContent = result.name;
     resultList.appendChild(li);
     li.addEventListener('click', () => {
       target.value = li.textContent;
       submitData.estimate.customerId = result.id;
       resultList.innerHTML = "";
-      console.log(submitData);
+      
 
-      getSubsidiary(submitData.estimate.customerId);
+      removeDisabled();
+      submitData.estimate.subsidiaryId = result.subsidiary;
+      //submitData.estimate.subsidiaryName = data.subsidiaryName;
+      subsidiary.value = li.textContent.split(": ").at(-1);
+      //getSubsidiary(submitData.estimate.customerId);
+      console.log(submitData);
     });
   })
 }
@@ -187,14 +192,14 @@ const item = (data, resultList, target) => {
 }
 
 
-const suiteqlUrl = "https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2210&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQVhNErAxA2RTx8ktjnsORgOoqu5T5GDRS7u-hhQFJ130"
+const suiteqlUrl = "https://6317455-sb1.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=2221&deploy=1&compid=6317455_SB1&ns-at=AAEJ7tMQ6k-43w5fPa8Ma7R5AiZWPhJeDkH4prVl5snti3f6HUk"
 const sqlSearch = (event) => {
   if (event.key !== "Enter") return;
 
   const type = event.target.id;
   const target = event.target;
   console.log("input:", target.value);
-  const params = [`%${target.value}%`];
+  const params = target.value;
   //const params = [`7`];
   const resultList = event.target.parentElement.parentElement.nextElementSibling;
   resultList.innerHTML = "Loading...";
